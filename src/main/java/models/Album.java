@@ -15,23 +15,12 @@ public class Album {
     @Column(name = "title")
     private String title;
 
-    @Column(name = "yearOfCreation")
-    private Date yearOfCreation;
-
     @Column(name = "description")
     private String description;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "album_id")
     private List<Track> tracks;
-
-    public Date getYearOfCreation() {
-        return yearOfCreation;
-    }
-
-    public void setYearOfCreation(Date yearOfCreation) {
-        this.yearOfCreation = yearOfCreation;
-    }
 
     public String getDescription() {
         return description;

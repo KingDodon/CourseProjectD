@@ -33,6 +33,16 @@ public class ArtistDao {
         return auu;
     }
 
+    public static List<Artist> findByIdList(List<Integer> idd){
+        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+        Transaction tx1 = session.beginTransaction();
+        String hql = "SELECT p FROM Artist p WHERE p.id IN :ids";
+        List<Artist> artists = session.createQuery(hql).setParameter("ids", idd).getResultList();
+        tx1.commit();
+        session.close();
+        return artists;
+    }
+
     public static void delById(int idd){
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();

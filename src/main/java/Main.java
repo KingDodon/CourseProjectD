@@ -1,3 +1,5 @@
+import dao.GenreDao;
+import models.Genre;
 import org.hibernate.Session;
 import utils.HibernateSessionFactoryUtil;
 

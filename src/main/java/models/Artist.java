@@ -18,11 +18,7 @@ public class Artist {
     @Column(name = "description")
     private String description;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "track_artist",
-            joinColumns = {@JoinColumn(name = "artist_id")},
-            inverseJoinColumns = {@JoinColumn(name = "track_id")})
+    @ManyToMany(mappedBy = "artist")
     public Set<Track> tracks = new HashSet<>();
 
     public int getArtist_id() {

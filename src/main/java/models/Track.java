@@ -26,7 +26,11 @@ public class Track {
     @JoinColumn(name = "album_id")
     private Album album;
 
-    @ManyToMany(mappedBy = "tracks")
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "track_artist",
+            joinColumns = {@JoinColumn(name = "track_id")},
+            inverseJoinColumns = {@JoinColumn(name = "artist_id")})
     private Set<Artist> artist = new HashSet<>();
 
     public int getTrack_id() {
