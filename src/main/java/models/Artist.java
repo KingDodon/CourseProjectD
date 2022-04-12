@@ -19,7 +19,7 @@ public class Artist {
     private String description;
 
     @ManyToMany(mappedBy = "artist")
-    public Set<Track> tracks = new HashSet<>();
+    private Set<Track> tracks = new HashSet<>();
 
     public int getArtist_id() {
         return artist_id;
