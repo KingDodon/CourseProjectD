@@ -4,69 +4,33 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        * {box-sizing: border-box}
 
-        /* Set height of body and the document to 100% */
-        body, html {
-            height: 100%;
-            margin: 0;
-            font-family: Arial;
-        }
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-        /* Style tab links */
-        .tablink {
-            background-color: #555;
-            color: white;
-            float: left;
-            border: none;
-            outline: none;
-            cursor: pointer;
-            padding: 14px 16px;
-            font-size: 17px;
-            width: 25%;
-        }
-
-        .tablink:hover {
-            background-color: #777;
-        }
-
-        /* Style the tab content (and add height:100% for full page content) */
-        .tabcontent {
-            color: white;
-            display: none;
-            padding: 100px 20px;
-            height: 100%;
-        }
-
-        #Home {background-color: red;}
-        #News {background-color: green;}
-        #Contact {background-color: blue;}
-        #About {background-color: orange;}
-    </style>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 </head>
 <body>
 
-<button class="tablink" onclick="openPage('Home', this, 'red')">Альбомы</button>
-<button class="tablink" onclick="openPage('News', this, 'green')" id="defaultOpen">Исполнители</button>
-<button class="tablink" onclick="openPage('Contact', this, 'blue')">Жанры</button>
-<button class="tablink" onclick="openPage('About', this, 'orange')">Треки</button>
+<button class="tablink" onclick="openPage('Albums', this, '#d3b49d')" id="albumsTab">Альбомы</button>
+<button class="tablink" onclick="openPage('Artists', this, '#bfc3d2')" id="artistsTab">Исполнители</button>
+<button class="tablink" onclick="openPage('Genres', this, '#abdcbd')" id="genresTab">Жанры</button>
+<button class="tablink" onclick="openPage('Tracks', this, '#9ad0c9')" id="tracksTab">Треки</button>
 
-<div id="Home" class="tabcontent">
+<div id="Albums" class="tabcontent">
     <%@include file="TabAlbum.jsp" %>
 </div>
 
-<div id="News" class="tabcontent">
+<div id="Artists" class="tabcontent">
     <h3>News</h3>
     <p>Some news this fine day!</p>
 </div>
 
-<div id="Contact" class="tabcontent">
+<div id="Genres" class="tabcontent">
     <%@include file="TabGenre.jsp" %>
 </div>
 
-<div id="About" class="tabcontent">
+<div id="Tracks" class="tabcontent">
     <h3>About</h3>
     <p>Who we are and what we do.</p>
 </div>
@@ -99,11 +63,21 @@
     }
     document.getElementById(pageName).style.display = "block";
     elmnt.style.backgroundColor = color;
+    sessionStorage.setItem('tab', elmnt.id);
   }
 
-  // Get the element with id="defaultOpen" and click on it
-  document.getElementById("defaultOpen").click();
+  window.onload = function () {
+    if (sessionStorage.getItem("tab") == null)
+      document.getElementById("albumsTab").click();
+    else
+      document.getElementById(sessionStorage.getItem("tab")).click();
+  }
+
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 
 </body>
 </html>
