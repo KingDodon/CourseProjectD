@@ -1,4 +1,4 @@
-package servlet.add;
+package servlet.edit;
 
 import dao.AlbumDao;
 import dao.ArtistDao;
@@ -18,8 +18,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@WebServlet(name = "/addTrack")
-public class AddTrackServlet extends HttpServlet {
+@WebServlet(name = "/editTrack")
+public class EditTrackServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
@@ -43,7 +43,7 @@ public class AddTrackServlet extends HttpServlet {
         Set<Artist> artistSet = new HashSet<>(artists);
         track.setArtist(artistSet);
 
-        TrackDao.save(track);
+        TrackDao.update(track);
 
         resp.sendRedirect("/mainPage");
     }

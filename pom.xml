@@ -58,8 +58,8 @@
                     <artifactId>tomcat7-maven-plugin</artifactId>
                     <version>2.2</version>
                     <configuration>
-                        <port>8080</port>   //Configure port number
-                        <path>/</path>   //Configure application root URL
+                        <port>8080</port>
+                        <path>/</path>
                     </configuration>
                 </plugin>
         </plugins>

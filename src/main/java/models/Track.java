@@ -33,6 +33,14 @@ public class Track {
             inverseJoinColumns = {@JoinColumn(name = "artist_id")})
     private Set<Artist> artist = new HashSet<>();
 
+    public Set<Artist> getArtist() {
+        return artist;
+    }
+
+    public void setArtist(Set<Artist> artist) {
+        this.artist = artist;
+    }
+
     public int getTrack_id() {
         return track_id;
     }

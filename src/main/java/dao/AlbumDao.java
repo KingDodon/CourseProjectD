@@ -42,6 +42,8 @@ public class AlbumDao {
         session.close();
     }
 
+
+
     public static List<Album> findAll() {
         return HibernateSessionFactoryUtil
                 .getSessionFactory()
