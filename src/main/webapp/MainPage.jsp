@@ -22,8 +22,7 @@
 </div>
 
 <div id="Artists" class="tabcontent">
-    <h3>News</h3>
-    <p>Some news this fine day!</p>
+    <%@include file="TabArtist.jsp" %>
 </div>
 
 <div id="Genres" class="tabcontent">

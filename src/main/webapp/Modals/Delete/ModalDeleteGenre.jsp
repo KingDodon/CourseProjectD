@@ -1,11 +1,10 @@
 <%@ page pageEncoding="UTF-8" %>
-<%----------------------------------------------Удалить унигк-------------------------------------------------------%>
 <div class="modal fade" id="DeleteGenreModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
      style="z-index: 1052">
     <div class="modal-dialog modal-dialog-centered modal-md" style="z-index: 1052">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="DelBookModalTitle">Вы действительно хотите удалить книгу?</h5><br>
+                <h5 class="modal-title" id="DelBookModalTitle">Вы действительно хотите удалить жанр?</h5><br>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
             </div>
             <div class="modal-body">
@@ -13,12 +12,17 @@
                 <button type="button" class="btn btn-dark px-4 md-close" data-bs-dismiss="modal"
                         style="float: left; padding-top: 10px; padding-bottom: 10px;">Отмена
                 </button>
-                <form id="data" style="display: none" action="${pageContext.request.contextPath}/deleteGenre}"
+                <form id="delGenreForm" style="display: none" action="${pageContext.request.contextPath}/deleteGenre"
                       method="post">
-                    <input placeholder="id" name="genre_id" id="genre_id" value="123">
+                    <input type="hidden" id="genreRemoveInput" name="genre_id">
                 </form>
-                <button type="submit" form="data" id="DelBookById" data-id="" class="btn btn-primary px-4 md-save"
-                        style="float: right; padding-top: 10px; padding-bottom: 10px;">Удалить
+
+                <button type="submit"
+                        form="delGenreForm"
+                        data-id=""
+                        class="btn btn-primary px-4 md-save"
+                        style="float: right; padding-top: 10px; padding-bottom: 10px;">
+                    Удалить
                 </button>
             </div>
         </div>
@@ -26,7 +30,5 @@
 </div>
 
 <script>
-  function deleteGenre(but) {
-    document.getElementById('genre_id').value = but.dataset.id;
-  }
+
 </script>

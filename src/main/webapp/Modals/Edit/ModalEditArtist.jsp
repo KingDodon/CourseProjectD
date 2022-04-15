@@ -1,9 +1,32 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
+<%@ page pageEncoding="UTF-8" %>
+<div class="modal fade" id="EditArtistModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+     style="z-index: 1052">
+    <div class="modal-dialog modal-dialog-centered modal-lg" style="z-index: 1052">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="EditArtistModalTitle">Изменить исполнителя</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+            </div>
+            <div class="modal-body">
 
-</body>
-</html>
+                <form id="editArtistForm" action="${pageContext.request.contextPath}/editArtist" method="post">
+                    <div class="mb-3">
+                        <input type="text" class="form-control" name="name" id="EditArtistName"
+                               placeholder="Введите имя исполнителя">
+                        <input type="text" class="form-control" name="description" id="EditArtistDescription"
+                               placeholder="Введите описание исполнителя">
+                        <input type="hidden" id="artistEditInput" name="artist_id">
+                    </div>
+                </form>
+                <button type="submit" form="editArtistForm"
+                        class="btn btn-primary px-4 md-save"
+                        style="float: right; padding-top: 10px; padding-bottom: 10px;"
+                        onclick="sessionStorage.setItem('tab', 'artistsTab')">
+                    Сохранить
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+</div>

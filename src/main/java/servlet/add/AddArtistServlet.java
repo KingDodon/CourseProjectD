@@ -18,7 +18,8 @@ public class AddArtistServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
         Artist artist = new Artist();
-        artist.setName(req.getParameter("title"));
+        System.out.println(req.getParameter("name"));
+        artist.setName(req.getParameter("name"));
         artist.setDescription(req.getParameter("description"));
         ArtistDao.save(artist);
         resp.sendRedirect("/mainPage");
