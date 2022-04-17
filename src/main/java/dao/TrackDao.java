@@ -36,8 +36,11 @@ public class TrackDao {
     public static void delById(int idd){
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-        String hql = "delete from Track where track_id = :id";
-        session.createQuery(hql).setParameter("id", idd).executeUpdate();
+//        String hql = "delete from Track where track_id = :id";
+//        session.createQuery(hql).setParameter("id", idd).executeUpdate();
+        Track track = new Track();
+        track.setTrack_id(idd);
+        session.remove(track);
         tx1.commit();
         session.close();
     }

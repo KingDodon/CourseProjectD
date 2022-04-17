@@ -26,19 +26,25 @@ public class Track {
     @JoinColumn(name = "album_id")
     private Album album;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "track_artist",
-            joinColumns = {@JoinColumn(name = "track_id")},
-            inverseJoinColumns = {@JoinColumn(name = "artist_id")})
-    private Set<Artist> artist = new HashSet<>();
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Artist> artists = new HashSet<>();
 
     public Set<Artist> getArtist() {
-        return artist;
+        return artists;
     }
 
-    public void setArtist(Set<Artist> artist) {
-        this.artist = artist;
+    public void setArtist(Set<Artist> artists) {
+        this.artists = artists;
+    }
+
+    public int[] getArrayId(){
+        int[] array = new int[artists.size()];
+        int i = 0;
+        for (Artist artist: artists) {
+            array[i] = artist.getArtist_id();
+            i++;
+        }
+        return array;
     }
 
     public int getTrack_id() {

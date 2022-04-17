@@ -1,6 +1,7 @@
 package dao;
 
 import models.Album;
+import models.Track;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import utils.HibernateSessionFactoryUtil;
@@ -36,8 +37,13 @@ public class AlbumDao {
     public static void delById(int idd){
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-        String hql = "delete from Album where album_id = :id";
-        session.createQuery(hql).setParameter("id", idd).executeUpdate();
+//        String hql = "delete from Album where album_id = :id";
+//        session.createQuery(hql).setParameter("id", idd).executeUpdate();
+        Album album = AlbumDao.findById(idd);
+        for (Track t: album.getTracks()) {
+            session.remove(t);
+        }
+        session.remove(album);
         tx1.commit();
         session.close();
     }
