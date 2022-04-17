@@ -1,7 +1,7 @@
 <%@ page pageEncoding="UTF-8" %>
 <div class="modal fade" id="EditGenreModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
      style="z-index: 1052">
-    <div class="modal-dialog modal-dialog-centered modal-lg" style="z-index: 1052">
+    <div class="modal-dialog modal-dialog-centered modal-md" style="z-index: 1052">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="CreateGenreModalTitle">Изменить жанр</h5>
