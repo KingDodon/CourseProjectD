@@ -49,7 +49,7 @@
                                     data-duration="${track.getDuration()}"
                                     data-album="${track.getAlbum().getAlbum_id()}"
                                     data-genre="${track.getGenre().getGenre_id()}"
-                                    data-artist="${track.getArtist()}"
+                                    data-artist="${track.getArrayId()}"
                                     data-bs-target="#EditTrackModal"
                                     data-bs-toggle="modal"
                             >
@@ -84,10 +84,13 @@
     document.getElementById("EditTrackGenre").value = but.dataset.genre;
     document.getElementById("EditTrackAlbum").value = but.dataset.album;
     document.getElementById("EditTrackDuration").value = but.dataset.duration;
-    console.log(document.getElementById("trackEditInput").value)
-    console.log(document.getElementById("EditTrackTitle").value)
-    console.log(document.getElementById("EditTrackGenre").value)
-    console.log(document.getElementById("EditTrackAlbum").value)
-    console.log(document.getElementById("EditTrackDuration").value)
+    let artists = but.dataset.artist;
+    console.log(artists)
+    let options = document.getElementsByClassName("artist");
+    for(let option of options){
+      if(artists.includes(option.value)){
+        option.setAttribute("selected", "selected")
+      }
+    }
   }
 </script>

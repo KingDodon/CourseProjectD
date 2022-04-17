@@ -11,6 +11,7 @@
 
                 <form id="editTrackForm" action="${pageContext.request.contextPath}/editTrack" method="post">
                     <input type="hidden" id="trackEditInput" name="track_id">
+                    <input type="hidden" id="artistSelected">
                     <div class="mb-3">
                         <input type="text" class="form-control" name="title" id="EditTrackTitle"
                                placeholder="Введите название трека">
@@ -38,7 +39,7 @@
                     <div class="mb-3">
                         <select class="form-select" name="artist_id" multiple id="artists-select" id="EditTrackArtist">
                             <c:forEach var="artist" items="${listArtist}">
-                                <option value="${artist.getArtist_id()}">${artist.getName()}</option>
+                                <option value="${artist.getArtist_id()}" class="artist">${artist.getName()}</option>
                             </c:forEach>
                         </select>
                     </div>
@@ -65,5 +66,8 @@
     console.log(select.value)
     sessionStorage.setItem('tab', 'tracksTab')
   }
+</script>
+<script>
+
 </script>
 

@@ -37,14 +37,14 @@ public class Track {
         this.artists = artists;
     }
 
-    public int[] getArrayId(){
-        int[] array = new int[artists.size()];
+    public String getArrayId(){
+        String str = new String();
         int i = 0;
         for (Artist artist: artists) {
-            array[i] = artist.getArtist_id();
+            str = str + " " + artist.getArtist_id();
             i++;
         }
-        return array;
+        return str;
     }
 
     public int getTrack_id() {

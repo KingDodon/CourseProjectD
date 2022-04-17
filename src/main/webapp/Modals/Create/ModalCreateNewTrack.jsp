@@ -15,7 +15,7 @@
                                placeholder="Введите название трека">
                     </div>
                     <div class="mb-3">
-                        <input type="text" class="form-control" name="duration" id="CreateTrackDuration"
+                        <input type="text" class="form-control" name="duration" id="CreateTrackDescription"
                                placeholder="Введите длительность трека">
                     </div>
                     <div class="mb-3">
