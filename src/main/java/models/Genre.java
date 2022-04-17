@@ -14,7 +14,7 @@ public class Genre {
     @Column(name = "title")
     private String title;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "genre_id")
     private List<Track> tracks;
 

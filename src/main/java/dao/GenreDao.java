@@ -1,6 +1,8 @@
 package dao;
 
+import models.Album;
 import models.Genre;
+import models.Track;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import utils.HibernateSessionFactoryUtil;
@@ -36,8 +38,16 @@ public class GenreDao {
     public static void delById(int idd){
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-        String hql = "delete from Genre where genre_id = :id";
-        session.createQuery(hql).setParameter("id", idd).executeUpdate();
+//        String hql = "delete from Genre where genre_id = :id";
+//        session.createQuery(hql).setParameter("id", idd).executeUpdate();
+//        Genre genre = new Genre();
+//        genre.setGenre_id(idd);
+//        session.remove(genre);
+        Genre genre = GenreDao.findById(idd);
+        for (Track t: genre.getTracks()) {
+            session.remove(t);
+        }
+        session.remove(genre);
         tx1.commit();
         session.close();
     }

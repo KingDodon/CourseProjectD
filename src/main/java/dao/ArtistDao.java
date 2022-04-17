@@ -1,10 +1,15 @@
 package dao;
 
+import models.Album;
 import models.Artist;
+import models.Genre;
+import models.Track;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import utils.HibernateSessionFactoryUtil;
 
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ArtistDao {
@@ -44,14 +49,34 @@ public class ArtistDao {
     }
 
     public static void delById(int idd){
-        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
-        Transaction tx1 = session.beginTransaction();
-        String hql = "delete from Artist where artist_id = :id";
-        session.createQuery(hql).setParameter("id", idd).executeUpdate();
-        tx1.commit();
-        session.close();
+        String DB_URL = "jdbc:postgresql://localhost:5432/postgres";
+        String USER = "postgres";
+        String PASS = "123456";
+        try (Connection connection = DriverManager.getConnection(DB_URL, USER, PASS)){
+            PreparedStatement preparedStatement = connection.prepareStatement("select tracks_track_id from track_artist where artists_artist_id = ? and tracks_track_id not in (select tracks_track_id from track_artist where artists_artist_id != ?)");
+            preparedStatement.setInt(1,idd);
+            preparedStatement.setInt(2,idd);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            ArrayList<Integer> arrayList = new ArrayList<>();
+            while (resultSet.next()){
+                arrayList.add(resultSet.getInt(1));
+            }
+            preparedStatement = connection.prepareStatement("delete from track_artist where artists_artist_id = ?;");
+            preparedStatement.setInt(1, idd);
+            preparedStatement.execute();
+            preparedStatement = connection.prepareStatement("delete from artist where artist_id = ?;");
+            preparedStatement.setInt(1, idd);
+            preparedStatement.execute();
+            for (int id: arrayList) {
+                preparedStatement = connection.prepareStatement("delete from track where track_id = ?;");
+                preparedStatement.setInt(1, id);
+                preparedStatement.execute();
+            }
+            preparedStatement.close();
+        } catch (SQLException ex){
+            ex.printStackTrace();
+        }
     }
-
     public static List<Artist> findAll() {
         return HibernateSessionFactoryUtil
                 .getSessionFactory()

@@ -18,7 +18,7 @@ public class Artist {
     @Column(name = "description")
     private String description;
 
-    @ManyToMany(mappedBy = "artist")
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "artists")
     private Set<Track> tracks = new HashSet<>();
 
     public int getArtist_id() {

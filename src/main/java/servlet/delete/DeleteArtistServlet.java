@@ -1,6 +1,5 @@
 package servlet.delete;
 
-import dao.AlbumDao;
 import dao.ArtistDao;
 
 import javax.servlet.ServletException;
