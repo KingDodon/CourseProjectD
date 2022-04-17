@@ -20,7 +20,7 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Title</th>
-                    <th scope="col">Description</th>
+                    <th scope="col">Duration</th>
                     <th scope="col">Artists</th>
                     <th scope="col">Album</th>
                     <th scope="col">Genre</th>
@@ -49,6 +49,7 @@
                                     data-duration="${track.getDuration()}"
                                     data-album="${track.getAlbum().getAlbum_id()}"
                                     data-genre="${track.getGenre().getGenre_id()}"
+                                    data-artist="${track.getArtist()}"
                                     data-bs-target="#EditTrackModal"
                                     data-bs-toggle="modal"
                             >
@@ -82,6 +83,11 @@
     document.getElementById("EditTrackTitle").value = but.dataset.title;
     document.getElementById("EditTrackGenre").value = but.dataset.genre;
     document.getElementById("EditTrackAlbum").value = but.dataset.album;
-    document.getElementById("EditTrackDescription").value = but.dataset.description;
+    document.getElementById("EditTrackDuration").value = but.dataset.duration;
+    console.log(document.getElementById("trackEditInput").value)
+    console.log(document.getElementById("EditTrackTitle").value)
+    console.log(document.getElementById("EditTrackGenre").value)
+    console.log(document.getElementById("EditTrackAlbum").value)
+    console.log(document.getElementById("EditTrackDuration").value)
   }
 </script>
