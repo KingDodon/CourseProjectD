@@ -9,10 +9,10 @@
             </div>
             <div class="modal-body">
 
-                <form id="editGenreForm" action="${pageContext.request.contextPath}/editGenre" method="post">
+                <form id="editGenreForm" action="${pageContext.request.contextPath}/editGenre" method="post" onsubmit="submit()">
                     <div class="mb-3">
                         <input type="text" class="form-control" name="title" id="EditGenreTitle"
-                               placeholder="Введите название жанра">
+                               placeholder="Введите название жанра" required>
                         <input type="hidden" id="genreEditInput" name="genre_id">
                     </div>
                 </form>
@@ -28,3 +28,15 @@
         </div>
     </div>
 </div>
+
+<script>
+  function submit(){
+    let form = document.getElementById("editGenreForm")
+    form.addEventListener('submit', function (event) {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+    }, false)
+  }
+</script>

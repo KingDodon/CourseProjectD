@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div class="col-5">
+<div>
     <div class="container">
         <div class="d-flex bd-highlight mb-3">
             <div class="me-auto p-2 bd-highlight"><h2>Albums</h2></div>
@@ -18,10 +18,10 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Action</th>
+                    <th scope="col" style="width: 5%">#</th>
+                    <th scope="col" style="width: 30%">Title</th>
+                    <th scope="col" style="width: 50%">Description</th>
+                    <th scope="col" style="width: 15%">Action</th>
                 </tr>
                 </thead>
                 <tbody id="mytable">

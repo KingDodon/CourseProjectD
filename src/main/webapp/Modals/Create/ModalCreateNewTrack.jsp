@@ -9,17 +9,17 @@
             </div>
             <div class="modal-body">
 
-                <form id="createTrackForm" action="${pageContext.request.contextPath}/addTrack" method="post">
+                <form id="createTrackForm" action = "${pageContext.request.contextPath}/addTrack" method="post" onsubmit="submit()">
                     <div class="mb-3">
                         <input type="text" class="form-control" name="title" id="CreateTrackTitle"
-                               placeholder="Введите название трека">
+                               placeholder="Введите название трека" required>
                     </div>
                     <div class="mb-3">
-                        <input type="text" class="form-control" name="duration" id="CreateTrackDescription"
-                               placeholder="Введите длительность трека">
+                        <input type="number" class="form-control" name="duration" id="CreateTrackDescription"
+                               placeholder="Введите длительность трека" required min="1">
                     </div>
                     <div class="mb-3">
-                        <select class="form-select" name="album_id">
+                        <select class="form-select" name="album_id" required>
                             <option value="" disabled selected hidden>Альбом</option>
                             <c:forEach var="album" items="${listAlbum}">
                                 <option value="${album.getAlbum_id()}">${album.getTitle()}</option>
@@ -27,7 +27,7 @@
                         </select>
                     </div>
                     <div class="mb-3">
-                        <select class="form-select" name="genre_id">
+                        <select class="form-select" name="genre_id" required>
                             <option value="" disabled selected hidden>Жанр</option>
                             <c:forEach var="genre" items="${listGenre}">
                                 <option value="${genre.getGenre_id()}">${genre.getTitle()}</option>
@@ -35,7 +35,7 @@
                         </select>
                     </div>
                     <div class="mb-3">
-                        <select class="form-select" name="artist_id" multiple id="artists-select">
+                        <select class="form-select" name="artist_id" multiple id="artists-select" required>
                             <c:forEach var="artist" items="${listArtist}">
                                 <option value="${artist.getArtist_id()}">${artist.getName()}</option>
                             </c:forEach>
@@ -44,8 +44,7 @@
                 </form>
                 <button type="submit" form="createTrackForm"
                         class="btn btn-primary px-4 md-save"
-                        style="float: right; padding-top: 10px; padding-bottom: 10px;"
-                        onclick="submit()">
+                        style="float: right; padding-top: 10px; padding-bottom: 10px;">
                     Добавить
                 </button>
 
@@ -55,13 +54,23 @@
     </div>
 </div>
 <script>
-    function submit(){
+    /*function submit(){
+      let form = document.getElementById("createAlbumForm");
       let select = document.getElementById('artists-select');
       let options = select.selectedOptions;
       let values = Array.from(options).map(({ value }) => value);
       select.value = values;
       console.log(select.value)
       sessionStorage.setItem('tab', 'tracksTab')
+    }*/
+    function submit(){
+      let form = document.getElementById("createAlbumForm")
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+      }, false)
     }
 </script>
 

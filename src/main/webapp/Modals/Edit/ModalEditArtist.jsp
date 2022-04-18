@@ -9,21 +9,20 @@
             </div>
             <div class="modal-body">
 
-                <form id="editArtistForm" action="${pageContext.request.contextPath}/editArtist" method="post">
+                <form id="editArtistForm" action="${pageContext.request.contextPath}/editArtist" method="post" onsubmit="submit()">
                     <div class="mb-3">
                         <input type="text" class="form-control" name="name" id="EditArtistName"
-                               placeholder="Введите имя исполнителя">
+                               placeholder="Введите имя исполнителя" required>
                     </div>
                     <div class="mb-3">
                         <input type="text" class="form-control" name="description" id="EditArtistDescription"
-                               placeholder="Введите описание исполнителя">
+                               placeholder="Введите описание исполнителя" required>
                         <input type="hidden" id="artistEditInput" name="artist_id">
                     </div>
                 </form>
                 <button type="submit" form="editArtistForm"
                         class="btn btn-primary px-4 md-save"
-                        style="float: right; padding-top: 10px; padding-bottom: 10px;"
-                        onclick="sessionStorage.setItem('tab', 'artistsTab')">
+                        style="float: right; padding-top: 10px; padding-bottom: 10px;">
                     Сохранить
                 </button>
 
@@ -32,3 +31,15 @@
         </div>
     </div>
 </div>
+
+<script>
+  function submit(){
+    let form = document.getElementById("editArtistForm")
+    form.addEventListener('submit', function (event) {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+    }, false)
+  }
+</script>

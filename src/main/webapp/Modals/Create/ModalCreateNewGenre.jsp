@@ -9,17 +9,15 @@
             </div>
             <div class="modal-body">
 
-                <form id="createGenreForm" action="${pageContext.request.contextPath}/addGenre" method="post">
-                    <!------------------------ФИО--------------------------->
+                <form id="createGenreForm" action="${pageContext.request.contextPath}/addGenre" method="post" onsubmit="submit()">
                     <div class="mb-3">
                         <input type="text" class="form-control" name="title" id="CreateGenreTitle"
-                               placeholder="Введите название жанра">
+                               placeholder="Введите название жанра" required>
                     </div>
                 </form>
                 <button type="submit" form="createGenreForm"
                         class="btn btn-primary px-4 md-save"
-                        style="float: right; padding-top: 10px; padding-bottom: 10px;"
-                        onclick="sessionStorage.setItem('tab', 'genresTab')">
+                        style="float: right; padding-top: 10px; padding-bottom: 10px;">
                     Добавить
                 </button>
 
@@ -28,3 +26,15 @@
         </div>
     </div>
 </div>
+
+<script>
+  function submit(){
+    let form = document.getElementById("createGenreForm")
+    form.addEventListener('submit', function (event) {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+    }, false)
+  }
+</script>

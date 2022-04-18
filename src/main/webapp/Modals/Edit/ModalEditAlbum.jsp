@@ -9,14 +9,14 @@
             </div>
             <div class="modal-body">
 
-                <form id="editAlbumForm" action="${pageContext.request.contextPath}/editAlbum" method="post">
+                <form id="editAlbumForm" action="${pageContext.request.contextPath}/editAlbum" method="post" onsubmit="submit()">
                     <div class="mb-3">
                         <input type="text" class="form-control" name="title" id="EditAlbumTitle"
-                               placeholder="Введите название альбома">
+                               placeholder="Введите название альбома" required>
                     </div>
                     <div class="mb-3">
                         <input type="text" class="form-control" name="description" id="EditAlbumDescription"
-                               placeholder="Введите описание альбома">
+                               placeholder="Введите описание альбома" required>
                         <input type="hidden" id="albumEditInput" name="album_id">
                     </div>
                 </form>
@@ -32,3 +32,15 @@
         </div>
     </div>
 </div>
+
+<script>
+  function submit(){
+    let form = document.getElementById("editAlbumForm")
+    form.addEventListener('submit', function (event) {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+    }, false)
+  }
+</script>

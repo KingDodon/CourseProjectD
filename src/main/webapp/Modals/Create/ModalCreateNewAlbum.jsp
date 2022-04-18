@@ -9,20 +9,19 @@
             </div>
             <div class="modal-body">
 
-                <form id="createAlbumForm" action="${pageContext.request.contextPath}/addAlbum" method="post">
+                <form id="createAlbumForm" action="${pageContext.request.contextPath}/addAlbum" method="post" onsubmit="submit()">
                     <div class="mb-3">
                         <input type="text" class="form-control" name="title" id="CreateAlbumTitle"
-                               placeholder="Введите название альбома">
+                               placeholder="Введите название альбома" required>
                     </div>
                     <div class="mb-3">
                         <input type="text" class="form-control" name="description" id="CreateAlbumDescription"
-                               placeholder="Введите описание альбома">
+                               placeholder="Введите описание альбома" required>
                     </div>
                 </form>
                 <button type="submit" form="createAlbumForm"
                         class="btn btn-primary px-4 md-save"
-                        style="float: right; padding-top: 10px; padding-bottom: 10px;"
-                        onclick="sessionStorage.setItem('tab', 'albumsTab')">
+                        style="float: right; padding-top: 10px; padding-bottom: 10px;">
                     Добавить
                 </button>
 
@@ -31,3 +30,15 @@
         </div>
     </div>
 </div>
+
+<script>
+  function submit(){
+    let form = document.getElementById("createAlbumForm")
+    form.addEventListener('submit', function (event) {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+    }, false)
+  }
+</script>
