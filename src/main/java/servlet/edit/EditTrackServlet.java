@@ -6,6 +6,7 @@ import dao.GenreDao;
 import dao.TrackDao;
 import models.Artist;
 import models.Track;
+import utils.Utils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,12 +24,6 @@ public class EditTrackServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
-        System.out.println(req.getParameter("track_id"));
-        System.out.println(req.getParameter("title"));
-        System.out.println(req.getParameter("duration"));
-        System.out.println(req.getParameter("album_id"));
-        System.out.println(req.getParameter("genre_id"));
-        System.out.println(req.getParameter("artist_id"));
         int id = Integer.parseInt(req.getParameter("track_id"));
         String title = req.getParameter("title");
         String duration = req.getParameter("duration");
@@ -39,7 +34,7 @@ public class EditTrackServlet extends HttpServlet {
 
         Track track = new Track();
         track.setTrack_id(id);
-        track.setTitle(title);
+        track.setTitle(Utils.convertToUTF8(title));
         track.setDuration(Integer.parseInt(duration));
         track.setAlbum(AlbumDao.findById(Integer.parseInt(album_id)));
         track.setGenre(GenreDao.findById(Integer.parseInt(genre_id)));

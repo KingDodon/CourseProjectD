@@ -8,8 +8,8 @@ import java.util.Set;
 @Table(name = "track")
 public class Track {
     @Id
-    @SequenceGenerator(name = "trackSeq", sequenceName = "SEQUENCE_ID_TRACK", allocationSize = 1)
-    @GeneratedValue( strategy = GenerationType.SEQUENCE, generator = "trackSeq")
+//    @SequenceGenerator(name = "trackSeq", sequenceName = "SEQUENCE_ID_TRACK", allocationSize = 1)
+//    @GeneratedValue( strategy = GenerationType.SEQUENCE, generator = "trackSeq")
     private int track_id;
 
     @Column(name = "title")

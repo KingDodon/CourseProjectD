@@ -2,6 +2,7 @@ package servlet.edit;
 
 import dao.GenreDao;
 import models.Genre;
+import utils.Utils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,7 +19,7 @@ public class EditGenreServlet extends HttpServlet {
         String title = req.getParameter("title");
         Genre genre = new Genre();
         genre.setGenre_id(id);
-        genre.setTitle(title);
+        genre.setTitle(Utils.convertToUTF8(title));
         GenreDao.update(genre);
         resp.sendRedirect("/mainPage");
     }

@@ -4,6 +4,7 @@ import dao.AlbumDao;
 import dao.ArtistDao;
 import models.Album;
 import models.Artist;
+import utils.Utils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,9 +19,9 @@ public class AddArtistServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
         Artist artist = new Artist();
-        System.out.println(req.getParameter("name"));
-        artist.setName(req.getParameter("name"));
-        artist.setDescription(req.getParameter("description"));
+        artist.setArtist_id(ArtistDao.getMaxId()+1);
+        artist.setName(Utils.convertToUTF8(req.getParameter("name")));
+        artist.setDescription(Utils.convertToUTF8(req.getParameter("description")));
         ArtistDao.save(artist);
         resp.sendRedirect("/mainPage");
     }

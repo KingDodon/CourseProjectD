@@ -2,6 +2,7 @@ package servlet.add;
 
 import dao.GenreDao;
 import models.Genre;
+import utils.Utils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,7 +18,8 @@ public class AddGenreServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
         Genre genre = new Genre();
-        genre.setTitle(req.getParameter("title"));
+        genre.setGenre_id(GenreDao.getMaxId()+1);
+        genre.setTitle(Utils.convertToUTF8(req.getParameter("title")));
         GenreDao.save(genre);
         resp.sendRedirect("/mainPage");
     }

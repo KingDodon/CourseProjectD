@@ -8,8 +8,8 @@ import java.util.Set;
 @Table(name = "artist")
 public class Artist {
     @Id
-    @SequenceGenerator(name = "artistSeq", sequenceName = "SEQUENCE_ID_ARTIST", allocationSize = 1)
-    @GeneratedValue( strategy = GenerationType.SEQUENCE, generator = "artistSeq")
+//    @SequenceGenerator(name = "artistSeq", sequenceName = "SEQUENCE_ID_ARTIST", allocationSize = 1)
+//    @GeneratedValue( strategy = GenerationType.SEQUENCE, generator = "artistSeq")
     private int artist_id;
 
     @Column(name = "name")
@@ -18,7 +18,7 @@ public class Artist {
     @Column(name = "description")
     private String description;
 
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "artists")
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "artists",cascade=CascadeType.ALL)
     private Set<Track> tracks = new HashSet<>();
 
     public int getArtist_id() {

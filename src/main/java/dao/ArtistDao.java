@@ -6,6 +6,7 @@ import models.Genre;
 import models.Track;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import utils.HibernateSessionFactoryUtil;
 
 import java.sql.*;
@@ -46,6 +47,16 @@ public class ArtistDao {
         tx1.commit();
         session.close();
         return artists;
+    }
+
+    public static int getMaxId(){
+        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+
+        String SQL_QUERY = "select max(artist_id)from Artist";
+        Query query = session.createQuery(SQL_QUERY);
+        List list = query.list();
+        session.close();
+        return (int) list.get(0);
     }
 
     public static void delById(int idd){

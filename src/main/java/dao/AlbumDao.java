@@ -4,6 +4,7 @@ import models.Album;
 import models.Track;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import utils.HibernateSessionFactoryUtil;
 
 import java.util.List;
@@ -32,6 +33,15 @@ public class AlbumDao {
         tx1.commit();
         session.close();
         return auu;
+    }
+
+    public static int getMaxId(){
+        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+        String SQL_QUERY = "select max(album_id)from Album";
+        Query query = session.createQuery(SQL_QUERY);
+        List list = query.list();
+        session.close();
+        return (int) list.get(0);
     }
 
     public static void delById(int idd){

@@ -2,6 +2,7 @@ package servlet.add;
 
 import dao.AlbumDao;
 import models.Album;
+import utils.Utils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,10 +15,10 @@ import java.io.IOException;
 public class AddAlbumServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html");
         Album album = new Album();
-        album.setTitle(req.getParameter("title"));
-        album.setDescription(req.getParameter("description"));
+        album.setAlbum_id(AlbumDao.getMaxId()+1);
+        album.setTitle(Utils.convertToUTF8(req.getParameter("title")));
+        album.setDescription(Utils.convertToUTF8(req.getParameter("description")));
         AlbumDao.save(album);
         resp.sendRedirect("/mainPage");
     }
