@@ -32,7 +32,7 @@
                     <tr>
                         <td id="trackId">${track.getTrack_id()}</td>
                         <td>${track.getTitle()}</td>
-                        <td>${track.getDuration()}</td>
+                        <td>${track.getDuration()/ 60 % 60}:${track.getDuration()/ 1 % 60}</td>
                         <td>
                             <c:forEach var="artist" items="${track.getArtist()}">
                                 <span>${artist.getName()}</span>
