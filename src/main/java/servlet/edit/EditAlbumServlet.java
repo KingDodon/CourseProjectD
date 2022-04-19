@@ -2,6 +2,7 @@ package servlet.edit;
 
 import dao.AlbumDao;
 import models.Album;
+import utils.Utils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,8 +20,8 @@ public class EditAlbumServlet extends HttpServlet {
         String description = req.getParameter("description");
         Album album = new Album();
         album.setAlbum_id(id);
-        album.setTitle(title);
-        album.setDescription(description);
+        album.setTitle(Utils.convertToUTF8(title));
+        album.setDescription(Utils.convertToUTF8(description));
         AlbumDao.update(album);
         resp.sendRedirect("/mainPage");
     }

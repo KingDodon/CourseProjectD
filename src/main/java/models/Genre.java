@@ -7,15 +7,14 @@ import java.util.List;
 @Table(name = "genre")
 public class Genre {
     @Id
-    @SequenceGenerator(name = "genreSeq", sequenceName = "SEQUENCE_ID_GENRE", allocationSize = 1)
-    @GeneratedValue( strategy = GenerationType.SEQUENCE, generator = "genreSeq")
+//    @SequenceGenerator(name = "genreSeq", sequenceName = "SEQUENCE_ID_GENRE", allocationSize = 1)
+//    @GeneratedValue( strategy = GenerationType.SEQUENCE, generator = "genreSeq")
     private int genre_id;
 
     @Column(name = "title")
     private String title;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "genre_id")
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "genre", cascade=CascadeType.ALL)
     private List<Track> tracks;
 
     public int getGenre_id() {

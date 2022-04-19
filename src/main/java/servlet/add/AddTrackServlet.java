@@ -6,6 +6,7 @@ import dao.GenreDao;
 import dao.TrackDao;
 import models.Artist;
 import models.Track;
+import utils.Utils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,7 +31,8 @@ public class AddTrackServlet extends HttpServlet {
         String[] artist = req.getParameterValues("artist_id");
 
         Track track = new Track();
-        track.setTitle(title);
+        track.setTrack_id(TrackDao.getMaxId()+1);
+        track.setTitle(Utils.convertToUTF8(title));
         track.setDuration(Integer.parseInt(duration));
         track.setAlbum(AlbumDao.findById(Integer.parseInt(album_id)));
         track.setGenre(GenreDao.findById(Integer.parseInt(genre_id)));

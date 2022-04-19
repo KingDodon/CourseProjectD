@@ -8,8 +8,8 @@ import java.util.List;
 @Table(name = "album")
 public class Album {
     @Id
-    @SequenceGenerator(name = "albumSeq", sequenceName = "SEQUENCE_ID_ALBUM", allocationSize = 1)
-    @GeneratedValue( strategy = GenerationType.SEQUENCE, generator = "albumSeq")
+//    @SequenceGenerator(name = "albumSeq", sequenceName = "SEQUENCE_ID_ALBUM", allocationSize = 1)
+//    @GeneratedValue( strategy = GenerationType.SEQUENCE, generator = "albumSeq")
     private int album_id;
 
     @Column(name = "title")
@@ -18,8 +18,7 @@ public class Album {
     @Column(name = "description")
     private String description;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "album_id")
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "album",cascade=CascadeType.ALL)
     private List<Track> tracks;
 
     public String getDescription() {

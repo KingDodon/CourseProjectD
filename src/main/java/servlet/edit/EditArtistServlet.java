@@ -4,6 +4,7 @@ import dao.AlbumDao;
 import dao.ArtistDao;
 import models.Album;
 import models.Artist;
+import utils.Utils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,8 +22,8 @@ public class EditArtistServlet extends HttpServlet {
         String description = req.getParameter("description");
         Artist artist = new Artist();
         artist.setArtist_id(id);
-        artist.setName(name);
-        artist.setDescription(description);
+        artist.setName(Utils.convertToUTF8(name));
+        artist.setDescription(Utils.convertToUTF8(description));
         ArtistDao.update(artist);
         resp.sendRedirect("/mainPage");
     }
